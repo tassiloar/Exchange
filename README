@@ -1,0 +1,72 @@
+Implimentation of an exchange
+
+------Notes------
+
+The order book:
+- Orders are either bids (buy) or asks (sell).
+- The order book is divided into bid side and ask side.
+- Each side shows a table of quote-prices and valume at that price aggragates 
+over all orders
+- Sorted in ascending order with buy side and then ask side
+- The difference between best bid and best ask is the bud-ask spread
+- The midprice is the mean of the best bid and best ask (often used as current 
+market price)
+- The mircoproce is a weitghted average price of best bid and ask with respect 
+to volume
+- A quote that crosses the spread is a bid that is higher than the lowest ask
+(hitting the bid, lifting the ask)
+- The market tape is a sequential list of timestamped market events
+
+Types of orders:
+- Market order: Hits the best available bid or lifts the best ask. If the order
+book is smaller than the quantity demanded the rest of the order is ignored.
+- Limit order: If the limit orders price crosses teh spread it is executed, if 
+not it is ass to the order book.
+- Good-for-day Order: Limit orders that expire at the end of trading day
+- Fill-or-Kill Order: A merket order than is only execute if it can be 
+completely filled at or better than a certain price.
+- All-or-Nothing Order: A FOK order that sits on teh exchange for a spesific
+duriation and waits for the situation to arrise where there is enough volume
+to execute teh transaction and expires after a certain amount of time
+- Imeiate-or-Cancel Order: An FOK order that can be partially filled for the 
+volume above a certain price
+- Iceberg Order: Allows trader to hide the full size of the order. When a 
+order is placed in the order book, as its filled it is increased by the 
+remainding amount.
+- Limit-on-Close Order: If the limit order is at the top of the stack on 
+market close then it executes, if not its canceled.
+- Market-on-Close: MKT orders that execute on market close.
+- Limit-on-Open: Limit order issued at market open
+- Market-on-Open: Market order issued at market open
+- One-Cancels-Other Order: A pair of two limit orders, if one executes the 
+other cancels
+- One-Sends_Other Order: A pair of two orders if one is executed the other one
+is sent
+- Each time an order is placed the exchange returns an order identification 
+code. That code can be used to sent a cancel order which removes an order from
+the order book. An exit market order cancles all oustaning order.
+
+Fees:
+- Various orders can have different fees for accepting, proccessing, and even
+canceling orders.
+- Historically, fees used to be a charge per unit traded with a bulk discount
+so that the percentage falls as the order volume increases.
+- In recent years, exchanges have introduced maker-taker fee structure where
+'maker' traders who provide liquidity to the market by posting limit orders 
+away from the best price are given preferential treatment in the form of 
+reduced fees or even payments from the exchange. While 'taker' traders which
+remove liquidity from the market by hitting the bid of lifting the ask pay a 
+higher fee than the makers.
+
+Algorithmic traders:
+- Sales traders are people that execute external client orders and attempt 
+to make a magrin on the order by fiding a better deal on the market and keeping
+the difference. This also anonymises transactions. This role has been replaced
+with algorithms.
+- Proprietary traders start with a pot of money and buy and sell assets in the 
+market with the intention of turning a profit. They don't work with clients. 
+- Some trading algorithms work in machine learning and some in micro-economics
+but it has lead to the development of some widely recognised algorithms.
+
+
+
